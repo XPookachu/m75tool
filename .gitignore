@@ -1,0 +1,10 @@
+backup/
+dev/
+ref/
+__pycache__/
+*.pyc
+m75map.json
+m75map.json.tmp
+build/
+dist/
+*.spec
