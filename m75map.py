@@ -91,8 +91,9 @@ class M75Error(Exception):
 
 
 def icue_running():
-    out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq iCUE.exe", "/NH"], capture_output=True, text=True).stdout
-    return "iCUE.exe" in out
+    # raw bytes: tasklist's "no tasks" notice is localized and OEM-encoded, so decoding it can fail
+    out = subprocess.run(["tasklist", "/FI", "IMAGENAME eq iCUE.exe", "/NH"], capture_output=True).stdout
+    return b"icue.exe" in out.lower()
 
 
 def kill_icue():
